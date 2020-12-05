@@ -17,29 +17,25 @@ def main():
     #爬取网页、解析数据、保存数据
 
 findLink=re.compile(r'" target="_blank">(.*?)<span class="kwcolor">(.*?)</span>(.*?)</a>',re.S)
-#findImgSrc=re.compile(r'<img.*src="(.*?)"',re.S)
+findContent=re.compile(r'<p>(.*?)<span class="kwcolor">(.*?)</span>(.*?)</p>',re.S)
 
 
 #爬取网页
 def getData(baseURL1,baseURL2):
     dataList=[]
-    for i in range(1,7):
+    for i in range(1,74):
         url=baseURL1+str(i)+baseURL2
         html=askURL(url)
 
         soup=BeautifulSoup(html,"html.parser")
-        for item in soup.find_all('div',class_="searchListOne"):
-            #print(item)
+        for item in soup.find('div',class_="searchListOne").find_all('h3'):
             data=[]
             item=str(item)
-            #print(item)
-            # break
             link=re.findall(findLink,item)[0]
-            #print(link)
             data.append(link)
-            #imgSrc=re.findall(findImgSrc,item)[0]
-            #data.append(imgSrc)
-            # dataList.append(data)
+            contentSrc=re.findall(findContent,item)[0]
+            data.append(contentSrc)
+            dataList.append(data)
     #print(dataList)
     return dataList
 
@@ -66,15 +62,15 @@ def saveData(dataList,savePath):
     print("save....")
     book = xlwt.Workbook(encoding="utf-8",style_compression=0)
     sheet = book.add_sheet('tianyaTry1',cell_overwrite_ok=True)
-    col=("标题")
-    for i in range(0,1):
+    col=("标题","正文")
+    for i in range(0,2):
         sheet.write(0,i,col[i])
-    for i in range(1,6):
+    for i in range(0,730):
         print("第%d条："%(i+1))
         data=dataList[i]
-        for j in range(0,1):
+        for j in range(0,2):
             sheet.write(i+1,j,data[j])
-    book.save('天涯try10.xls')
+    book.save('天涯数据1.xls')
 
 
 if __name__ == '__main__':
