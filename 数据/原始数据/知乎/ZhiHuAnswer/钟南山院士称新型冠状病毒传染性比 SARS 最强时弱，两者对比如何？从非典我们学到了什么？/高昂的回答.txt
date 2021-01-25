@@ -1,0 +1,4 @@
+用户：高昂
+点赞数：12
+评论数3
+选取帝国理工先前的模型代入最新的数据:海外确诊12例(HK两例阳性也纳入,Fromwiki)平均潜伏期7天(From国家卫计委)武汉机场服务人口1900W，保持不变每日国际出港3301人次，保持不变计算得到感染者9867(包含潜伏期)95%置信区间的下限是5700左右考虑到车站的人口密度远大于机场该数据仍有上浮可能参见http://www.imperial.ac.uk/mrc-global-infectious-disease-analysis/news--wuhan-coronavirus/
